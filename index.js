@@ -6,8 +6,12 @@ var autoprefixer  = require('autoprefixer-stylus');
 var React = require('react');
 var moment = require('moment-timezone');
 var fs = require('fs');
+var reload = require('require-reload')(require);
+var bodyParser = require('body-parser')
+var exec = require('child_process').exec;
 
-var people = require('./people.json');
+var config = require('./data/config');
+var people = reload('./data/people.json');
 var transform = require('./app/utils/transform.js');
 
 // Allow direct requiring of .jsx files
@@ -24,6 +28,10 @@ function template (body, done) {
 }
 
 app.use(logger('common'));
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+      extended: true
+}));
 
 // Stylus
 app.use(
@@ -59,6 +67,19 @@ app.get('/', function(err, res){
     res.send(html);
   });
 
+});
+
+app.post('/deploy', function (req, res) {
+  exec("cd /usr/src/app/data;curl -O " + config.data_url, function(err, stdout, stderr) {
+    if (err){
+      console.log(stderr);
+      res.status(500).send(stderr);
+    }else{
+      people = reload('./data/people.json');
+      console.log(stdout);
+      res.status(200).send(stdout);
+    }
+  })
 });
 
 // Static files
