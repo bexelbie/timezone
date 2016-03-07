@@ -1,8 +1,13 @@
 var moment = require('moment-timezone');
 var gravatar = require('gravatar');
+var tzwhere = require('tzwhere');
+tzwhere.init();
 
 
 function appendTime(time, person) {
+  if (!person.tz && (person.lat && person.lng)) {
+    person.tz =  tzwhere.tzNameAt( person.lat, person.lng );
+  }
   person.time = moment( time ).tz( person.tz );
 }
 

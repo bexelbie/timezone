@@ -18,8 +18,11 @@ Each person can have the following data values:
   * Image (If both are present, `avatar` is used) *OPTIONAL*
     * **avatar**: A url to the person's image
     * **gravatar**: The email address for the person's gravatar
-  * **city**: The person's city name *OPTIONAL*
-  * **tz**: Timezone codes for the `tz` field can be found [here](http://momentjs.com/timezone/). *MANDATORY*
+  * Timezone Information (Either `tz` or `lat` and `lng` must be present. If both are present, `tz` is used.) *MANDATORY*
+    * **tz**: Timezone codes for the `tz` field can be found [here](http://momentjs.com/timezone/).
+    * **lat** and **lng**: Latitude and Longitude Information.  Don't use oceans.  When used, this does *not* populate the city information.
+
+**Note:** In each timezone, the city with the most number of people is used for the column name, unless TZ display is selected.  See **Configuration** below.
 
 Each person object should have data in the following format:
 
@@ -35,7 +38,8 @@ Each person object should have data in the following format:
     "name": "Niel",
     "gravatar": "niel@example.com",
     "city": "Cape Town",
-    "tz": "Africa/Johannesburg"
+    "lat": "-33.952456",
+    "lng": "18.460860"
   }
 ]
 ```
