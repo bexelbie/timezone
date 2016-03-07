@@ -69,19 +69,17 @@ app.get('/', function(err, res){
 
 });
 
-app.post('/deploy/:token', function (req, res) {
-  if(typeof req.params.token === "undefined" || req.params.token != config.token){
-      res.status(403).send('403 not authorized');
-  }else{
-    exec("cd data;curl -O " + config.data_url, function(err, stdout, stderr){
-        if (err){
-            res.status(500).send(stderr);
-        }else{
-            people = reload('./data/people.json');
-            res.status(200).send(stdout);
-        }
-    })
-  }
+app.post('/deploy', function (req, res) {
+  exec("cd /usr/src/app/data;curl -O " + config.data_url, function(err, stdout, stderr) {
+    if (err){
+      console.log(stderr);
+      res.status(500).send(stderr);
+    }else{
+      people = reload('./data/people.json');
+      console.log(stdout);
+      res.status(200).send(stdout);
+    }
+  })
 });
 
 // Static files
