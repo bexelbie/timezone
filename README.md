@@ -1,3 +1,17 @@
+# OSAS custom version!!
+
+This code is forked from https://github.com/djfarrelly/timezone and contains unmerged PRs for:
+
+* Default initials for lowercase names
+* Support for latitude and longitude
+* Docker Support
+* Displaying TZ instead of a city for timezone columns
+* Gravatar support
+* reloading on git-webhook
+
+The code is [deployed](http://10.3.8.111:3000/) on OS1 (internal) on a
+CentOS Atomic Host and run by @bexelbie (Brian Exelbierd).
+
 # Timezone
 
 Timezone is an application aimed at helping remote teams by making it easier
