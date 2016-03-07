@@ -64,13 +64,10 @@ Each person object should have data in the following format:
 By default, timezone uses port 3000.  This port can be changed by setting
 the environment variable, `PORT`.  i.e. `PORT=80` to use port 80.
 
-<<<<<<< HEAD
 By default, in each timezone, the city with the most number of people
 is used for the column name.  This can be overridden by setting the
 environment variable, `USE_TZ=1`.
 
-=======
->>>>>>> bexelbie_docker
 # Deploy
 
 This project is easily deployable on both Heroku and via docker.
