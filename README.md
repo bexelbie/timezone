@@ -9,7 +9,7 @@ up for if you'd rather not self-host and take advantage of newer features!
 
 # Setup
 
-Clone this repo and add a `people.json` file in the repo's root directory.
+Clone this repo and add a `people.json` file in the repo's `data` directory.
 
 Each person can have the following data values:
 
@@ -43,29 +43,50 @@ Each person object should have data in the following format:
   }
 ]
 ```
-# Configuration
 
 # Configuration
 
 By default, timezone uses port 3000.  This port can be changed by setting
 the environment variable, `PORT`.  i.e. `PORT=80` to use port 80.
 
+<<<<<<< HEAD
 By default, in each timezone, the city with the most number of people
 is used for the column name.  This can be overridden by setting the
 environment variable, `USE_TZ=1`.
 
+=======
+>>>>>>> bexelbie_docker
 # Deploy
 
-This project is designed with a Procfile to deploy to a Heroku instance. Please
-check with Heroku's up to date documentation for any latest changes. You should
-be able to commit your changes in your forked repo (including adding your own
-people.json file) then run:
+This project is easily deployable on both Heroku and via docker.
+
+## Heroku
+
+This project is designed with a Procfile to deploy to a Heroku
+instance. Please check with Heroku's up to date documentation for any
+latest changes. You should be able to commit your changes in your forked
+repo (including adding your own people.json file) then run:
 
 ```bash
   $ heroku create
   $ git push heroku master
 ```
+## Docker
 
+With docker, build the image with the following command:
+
+```bash
+  $ docker build -t timezone .
+```
+
+You can run the command as follows:
+
+```bash
+  $ docker run -d -p 3000:3000 -v $PWD:/usr/src/app/data --name timezone timezone
+```
+
+**Note:** the `-p`, `-v` and `--name` argument are optional.  `-v`
+can be used to mount a directory with the `people.json` file.
 
 # Development
 
