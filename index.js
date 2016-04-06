@@ -70,7 +70,7 @@ app.get('/', function(err, res){
 });
 
 app.post('/deploy', function (req, res) {
-  exec("cd /usr/src/app/data;curl -O " + config.data_url, function(err, stdout, stderr) {
+  exec("cd /usr/src/app/data;curl -kO " + config.data_url, function(err, stdout, stderr) {
     if (err){
       console.log(stderr);
       res.status(500).send(stderr);
