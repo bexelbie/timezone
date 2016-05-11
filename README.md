@@ -10,7 +10,7 @@ This code is forked from https://github.com/djfarrelly/timezone and contains unm
 * reloading on git-webhook
 * Timezones are now zebra-striped and fade (ty @garrett)
 
-The code is [deployed](http://10.3.8.111:3000/) on OS1 (internal) on a
+The code is [deployed](http://timezone.usersys.redhat.com/) on OS1 (internal) on a
 CentOS Atomic Host and run by @bexelbie (Brian Exelbierd).
 
 # Timezone
